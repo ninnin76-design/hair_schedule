@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background Squircle -->
+  <rect x="0" y="0" width="512" height="512" rx="120" ry="120" fill="url(#bgGradient)" />
+  
+  <!-- Border Accent -->
+  <rect x="10" y="10" width="492" height="492" rx="110" ry="110" fill="none" stroke="url(#iconGradient)" stroke-width="8" opacity="0.3" />
+
+  <!-- Scissors Icon -->
+  <g transform="translate(106, 106) scale(0.6)" filter="url(#shadow)">
+    <path fill="url(#iconGradient)" d="M394.9,295.6c-4.2-6.5-13.4-6.9-18.4-1l-66.3,77.7c-5.8,6.8-2.6,17.2,5.7,19.8l10.5,3.3
+      c-5.2,19-21.6,33.5-41.9,35.6c-19.5,2-38.6-8.9-46.3-26.7c-7.7-17.8-2.6-38.6,11.8-51.2l62.4-54.6c6.4-5.6,6.7-15.4,0.6-21.4
+      L195.4,161c-5.6-5.5-14.7-5.2-19.9,0.7l-49.4,56.3c-20.9,23.8-58.2,21.5-76.4-4.8c-15.5-22.3-9.5-53.1,13.2-68.5l98.3-66.8
+      c6.2-4.2,7.3-12.7,2.3-18.3L138.8,30.3c-4.2-4.7-11.6-5-16.2-0.8L12.4,129.7c-9.5,8.6-13,22.4-8.8,34.6c4.2,12.2,14.6,21.3,27.1,23.7
+      c51.2,9.7,92.5,50.7,100.2,102.3c2.2,14.5,14.7,25.1,29.3,25.1h0.4c12.3,0,23.4-7.4,27.8-19l4.5-11.7l30.6-34.9l80.3,91.8
+      c-3.1,4.4-4.9,9.8-4.9,15.6c0,14.9,12.1,27,27,27h12c14.9,0,27-12.1,27-27v-3.7C464.9,328.6,432.8,300.7,394.9,295.6z M125,123.8
+      l-58.8,39.9c-6.6,4.5-15.6,2.7-20.1-3.9s-2.7-15.6,3.9-20.1l58.8-39.9c6.6-4.5,15.6-2.7,20.1,3.9C133.4,108.2,131.6,119.3,125,123.8
+      z"/>
+    <path fill="#e2e8f0" d="M370.4,177.3l-81.7-93.4l24.5-28c5.6-6.4,5.3-16.1-0.8-22.1L290.7,12.5c-5.6-5.5-14.6-5.3-20,0.5
+      L160.3,131.7c-5.8,6.3-5.3,16.1,1.1,21.8l103,90.1c5.8,5.1,14.6,4.5,19.6-1.3l86.6-64.6
+      C376.1,173.6,375.8,168.2,370.4,177.3z"/>
+  </g>
+</svg>
