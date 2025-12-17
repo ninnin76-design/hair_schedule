@@ -130,11 +130,31 @@ export const ReservationForm: React.FC<ReservationFormProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.customerName.trim() && !formData.customerPhone.trim()) {
+    
+    const isNameEmpty = !formData.customerName.trim();
+    const isPhoneEmpty = !formData.customerPhone.trim();
+
+    // Validation: Require at least name or phone
+    if (isNameEmpty && isPhoneEmpty) {
       setError('고객명 또는 전화번호 중 하나는 반드시 입력해야 합니다.');
       return;
     }
-    onSave(formData, reservationToEdit?.id);
+
+    // Clone formData to modify it for submission
+    const submissionData = { ...formData };
+
+    // Auto-fill customerName if empty
+    if (isNameEmpty && !isPhoneEmpty) {
+      const phone = submissionData.customerPhone.trim();
+      // If phone length > 4, use last 4 digits. Else use full phone.
+      if (phone.length > 4) {
+        submissionData.customerName = phone.slice(-4);
+      } else {
+        submissionData.customerName = phone;
+      }
+    }
+
+    onSave(submissionData, reservationToEdit?.id);
   };
 
   // Handler to show confirmation UI
