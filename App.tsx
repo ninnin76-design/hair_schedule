@@ -4,6 +4,7 @@ import { getReservations, saveReservation, deleteReservation } from './services/
 import { ReservationForm } from './components/ReservationForm';
 import { UpcomingListModal } from './components/UpcomingListModal';
 import { CustomerHistoryModal } from './components/CustomerHistoryModal';
+import { LoginScreen } from './components/LoginScreen';
 
 // Utility for date handling
 const getTodayStr = () => new Date().toISOString().split('T')[0];
@@ -86,7 +87,10 @@ const isKoreanHoliday = (dateStr: string) => {
 };
 
 export default function App() {
-  // State
+  // Auth State
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
+  // App Data State
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDateStr, setSelectedDateStr] = useState(getTodayStr());
   const [reservations, setReservations] = useState<Reservation[]>([]);
@@ -107,6 +111,19 @@ export default function App() {
 
   // Real-time clock for highlighting upcoming reservations
   const [nowTimeStr, setNowTimeStr] = useState(new Date().toTimeString().slice(0, 5));
+
+  // Check Authentication on Mount
+  useEffect(() => {
+    const auth = localStorage.getItem('salon_auth');
+    if (auth === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLoginSuccess = () => {
+    localStorage.setItem('salon_auth', 'true');
+    setIsAuthenticated(true);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -150,8 +167,10 @@ export default function App() {
   };
 
   useEffect(() => {
-    loadData();
-  }, []);
+    if (isAuthenticated) {
+      loadData();
+    }
+  }, [isAuthenticated]);
 
   // Manual Refresh Handler
   const handleRefresh = async () => {
@@ -255,6 +274,11 @@ export default function App() {
 
   const monthLabel = `${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월`;
   const todayStr = getTodayStr();
+
+  // AUTH GUARD
+  if (!isAuthenticated) {
+    return <LoginScreen onLogin={handleLoginSuccess} />;
+  }
 
   return (
     <div className="h-screen flex flex-col bg-slate-900 text-slate-100 relative">
