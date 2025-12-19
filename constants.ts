@@ -6,7 +6,8 @@ export const DEFAULT_SERVICE_OPTIONS = [
   '셋팅',
   '염색',
   '클리닉',
-  '시술'
+  '드라이',
+  '샴푸'
 ];
 
 export const TIME_SLOTS: string[] = [];

@@ -95,7 +95,22 @@ export const getServiceOptions = async (): Promise<string[]> => {
       return createdServices;
     }
 
-    return snapshot.docs.map(d => d.data().name as string);
+    // Get current options from DB
+    const dbOptions = snapshot.docs.map(d => d.data().name as string);
+    
+    // Filter out '시술' and ensure it matches the latest DEFAULT_SERVICE_OPTIONS logic
+    // We return the merged/cleaned list to ensure the owner's request is met immediately
+    const filteredOptions = dbOptions.filter(opt => opt !== '시술');
+    
+    // Add missing required options
+    const requiredOptions = ['드라이', '샴푸'];
+    requiredOptions.forEach(opt => {
+      if (!filteredOptions.includes(opt)) {
+        filteredOptions.push(opt);
+      }
+    });
+
+    return filteredOptions;
   } catch (e) {
     console.error("Failed to fetch service options", e);
     // Fallback to default if offline or error
