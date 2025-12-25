@@ -9,7 +9,8 @@ export default defineConfig({
       targets: [
         { src: 'manifest.json', dest: '' },
         { src: 'icon.svg', dest: '' },
-        { src: 'sw.js', dest: '' }
+        { src: 'sw.js', dest: '' },
+        { src: 'all.csv', dest: '' }
       ]
     })
   ],
